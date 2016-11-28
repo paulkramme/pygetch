@@ -12,10 +12,10 @@ def getch():
     termios.tcsetattr(fd, termios.TCSANOW, attrs)
     fcntl.fcntl(fd, fcntl.F_SETFL, flags_save & ~os.O_NONBLOCK)
     try:
-        ret = sys.stdin.read(1)
+        ret_output = sys.stdin.read(1)
     except KeyboardInterrupt:
-        ret = 0
+        ret_output = 0
     finally:
         termios.tcsetattr(fd, termios.TCSAFLUSH, attrs_save)
         fcntl.fcntl(fd, fcntl.F_SETFL, flags_save)
-    return ret
+    return ret_output
